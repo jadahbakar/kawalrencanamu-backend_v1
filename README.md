@@ -138,7 +138,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 
-```sh
+```
 kawalrencanamu-backend/
 ├── bin                   # This is where the main application is saved, technically this is the destination for go build
 ├── cmd                   # Any of main application here,
