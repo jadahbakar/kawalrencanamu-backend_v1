@@ -1,4 +1,6 @@
-Proprietary License
-
-Copyright (c) 2021 Kawal Rencanamu
-
+/* Copyright (C) 2021 Kawal Rencanamu, Inc - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Dedy Styawan <dedy.styawan@gmail.com>, 2021
+ * Written by Setiadi Akbar <setiadiakbar0@gmail.com>, 2021
+ */

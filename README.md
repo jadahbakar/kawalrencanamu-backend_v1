@@ -240,6 +240,6 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 [license-shield]: https://img.shields.io/github/license/jadahbakar/kawalrencanamu-backend.svg?style=for-the-badge
 [license-url]: https://github.com/jadahbakar/kawalrencanamu-backend/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/jadahbakar
+[linkedin-url]: https://linkedin.com/in/dedystyawan
 [product-screenshot]: images/screenshot.png
 [logo-screenshot]: images/screenshot.png
