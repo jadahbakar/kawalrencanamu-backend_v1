@@ -58,7 +58,7 @@ https://github.com/Naereen/badges
 This system is using for [Kawal Rencanamu][company-website] frontend and mobile system. right now we're using Monolith architecture, but it does not rule out the possibility we rewrite using Microservice architecture.
 
 <!-- BUILD WITH -->
-### Built With
+#### Built With
 
 This section we explain what is backend is develop with 
 * [Golang](https://golang.org)
@@ -74,7 +74,7 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 <!-- PREREQUISITES -->
-### Prerequisites
+#### Prerequisites
 
 * First you need to install [Golang](https://golang.org/doc/install)
 
@@ -87,7 +87,7 @@ To get a local copy up and running follow these simple example steps.
 
 
 <!-- INSTALLATION -->
-### Installation
+#### Installation
 
 1. Clone the repo
    ```sh
