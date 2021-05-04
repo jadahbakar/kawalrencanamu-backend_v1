@@ -148,6 +148,7 @@ Distributed under the Proprietary License. See `LICENSE` for more information.
 ## Contact
 
 Dedy Styawan - [dedy.styawan](https://twitter.com/dedystyawan) - dedy.styawan@gmail.com
+
 Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmail.com
 
 
