@@ -19,7 +19,7 @@ https://github.com/Naereen/badges
 <br />
 <p align="center">
   <a href="https://github.com/jadahbakar/kawalrencanamu-backend">
-    <img src="images/small.png" alt="Logo" width="158" height="137">
+    <img src="images/kawalrencanamu.png" alt="Logo" width="158" height="137">
   </a>
 
   <h3 align="center">Kawal Rencanamu Backend</h3> <br />
