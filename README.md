@@ -74,6 +74,7 @@ This section we explain what is backend is develop with
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
+<!-- Prerequisites -->
 ### Prerequisites
 
 * First you need to install [Golang](https://golang.org/doc/install)
@@ -86,7 +87,7 @@ To get a local copy up and running follow these simple example steps.
 * Check the version, must be minimum 1.11 because we need the [Golang Modules](https://blog.golang.org/using-go-modules)
 
 
-
+<!-- INSTALLATION -->
 ### Installation
 
 1. Clone the repo
