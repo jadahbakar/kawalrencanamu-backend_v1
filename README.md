@@ -112,6 +112,13 @@ kawalrencanamu-backend/
 │   └── kawalrencanamu.png
 └── internal
     ├── core
+    │   ├── [service-name]
+    │   │   ├── [domain-name]
+    │   │   │   └── xxxx.go
+    │   │   ├── [ports-name]
+    │   │   │   └── yyy.go
+    │   │   └── [service-name]
+    │   │       └── zzz.go
     │   ├── authenticate
     │   │   ├── domain
     │   │   │   └── domain.go
