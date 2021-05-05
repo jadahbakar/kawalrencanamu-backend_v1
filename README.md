@@ -13,8 +13,6 @@ https://github.com/Naereen/badges
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
-
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -78,12 +76,11 @@ To get a local copy up and running follow these simple example steps.
 
 * First you need to install [Golang](https://golang.org/doc/install)
 
-* After that check the installation
+* After that check the installation and Golang version it must be above than 1.11 because we need the [Golang Modules](https://blog.golang.org/using-go-modules)
   ```sh
   > go version
   go version go1.16.3 darwin/amd64
    ```
-* Check the version, must be minimum 1.11 because we need the [Golang Modules](https://blog.golang.org/using-go-modules)
 
 
 <!-- INSTALLATION -->
@@ -111,9 +108,8 @@ kawalrencanamu-backend/
 │       └── httpserver.go
 ├── go.mod
 ├── images
-│   ├── kawalrencanamu-small.png
-│   ├── kawalrencanamu.png
-│   └── small.png
+│   ├── golang.svg
+│   └── kawalrencanamu.png
 └── internal
     ├── core
     │   ├── authenticate
