@@ -103,40 +103,51 @@ To get a local copy up and running follow these simple example steps.
 kawalrencanamu-backend/
 ├── LICENSE.txt
 ├── README.md
-├── cmd                             # Any of main application here
-│   └── httpserver                  # The requests from API are being organized
-│       └── httpserver.go
+├── app.env
+├── cmd
+│   └── httpserver
+│       └── main.go
 ├── go.mod
+├── go.sum
 ├── images
 │   ├── golang.svg
 │   └── kawalrencanamu.png
-└── internal
-    ├── core
-    │   ├── [service-name]
-    │   │   ├── [domain-name]
-    │   │   │   └── xxxx.go
-    │   │   ├── [ports-name]
-    │   │   │   └── yyy.go
-    │   │   └── [service-name]
-    │   │       └── zzz.go
-    │   ├── authenticate
-    │   │   ├── domain
-    │   │   │   └── domain.go
-    │   │   ├── ports
-    │   │   │   └── ports.go
-    │   │   └── service
-    │   │       └── service.go
-    │   └── user
-    │       ├── domain
-    │       │   └── domain.go
-    │       ├── ports
-    │       │   └── ports.go
-    │       └── service
-    │           └── service.go
-    ├── handlers
-    │   └── handlers.go
-    └── repositories                # Uses for data storing logic, 
-        └── repo.go
+├── internal
+│   ├── core
+│   │   ├── authenticate
+│   │   │   ├── domain
+│   │   │   │   └── domain.go
+│   │   │   ├── ports
+│   │   │   │   └── ports.go
+│   │   │   └── service
+│   │   │       └── service.go
+│   │   ├── me
+│   │   │   ├── domain
+│   │   │   ├── ports
+│   │   │   │   └── services.go
+│   │   │   └── service
+│   │   │       └── service.go
+│   │   └── user
+│   │       ├── domain
+│   │       │   └── domain.go
+│   │       ├── ports
+│   │       │   └── ports.go
+│   │       └── service
+│   │           └── service.go
+│   ├── handlers
+│   │   └── me
+│   │       └── me.go
+│   └── repositories
+│       └── repo.go
+├── log.md
+└── pkg
+    ├── config
+    │   ├── appConfig.go
+    │   └── fiberConfig.go
+    ├── middleware
+    │   └── fiberMiddleware.go
+    └── utils
+        └── startServer.go
 ```
 
 

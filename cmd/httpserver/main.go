@@ -20,7 +20,6 @@ func main() {
 	app := fiber.New(confFiber)
 	// Middlewares.
 	middleware.FiberMiddleware(app) // Register Fiber's middleware for app.
-	// app.Use(logger.New()) // new
 	// Start server (with graceful shutdown).
 	utils.StartServerWithGracefulShutdown(app, confApp)
 }
