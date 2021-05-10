@@ -6,6 +6,7 @@ require (
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6 // indirect
 	github.com/coreos/go-etcd v2.0.0+incompatible // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/form3tech-oss/jwt-go v3.2.2+incompatible // indirect
 	github.com/gofiber/fiber/v2 v2.9.0
 	github.com/gofiber/jwt/v2 v2.2.1 // indirect
