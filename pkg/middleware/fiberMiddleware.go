@@ -30,13 +30,14 @@ func FiberMiddleware(a *fiber.App) {
 			ExposeHeaders:    "",
 			MaxAge:           0,
 		}),
-		// Add simple logger.
+		// Add logger.
 		logger.New(logger.Config{
 			Format:     "[${time}] ${pid} ${locals:requestid} ${status} - ${latency} ${method} ${path}\n",
 			TimeFormat: "2006/Jan/02 15:04:05",
 			TimeZone:   "Asia/Jakarta",
 			Output:     file,
 		}),
+		// Add Compress
 		compress.New(compress.Config{
 			Level: compress.LevelBestSpeed,
 		}),
