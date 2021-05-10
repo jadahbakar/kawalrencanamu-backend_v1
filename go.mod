@@ -11,6 +11,7 @@ require (
 	github.com/gofiber/jwt/v2 v2.2.1 // indirect
 	github.com/klauspost/compress v1.12.2 // indirect
 	github.com/spf13/viper v1.7.1 // indirect
+	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/ugorji/go/codec v0.0.0-20181204163529-d75b2dcb6bc8 // indirect
 	github.com/valyala/fasthttp v1.24.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect

@@ -15,11 +15,11 @@ func main() {
 	if err != nil {
 		log.Fatal("cannot load config:", err)
 	}
-	// Define Fiber config.
+	// Define Fiber's config.
 	confFiber := config.FiberConfig(confApp)
 	app := fiber.New(confFiber)
-	// Middlewares.
-	middleware.FiberMiddleware(app) // Register Fiber's middleware for app.
+	// Register Fiber's middleware for app.
+	middleware.FiberMiddleware(app)
 	// Start server (with graceful shutdown).
 	utils.StartServerWithGracefulShutdown(app, confApp)
 }
