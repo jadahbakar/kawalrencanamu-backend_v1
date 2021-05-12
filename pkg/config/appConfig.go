@@ -8,6 +8,7 @@ import (
 type Config struct {
 	ApiURLGroup       string `mapstructure:"API_URL_GROUP"`
 	ApiURLVersion     string `mapstructure:"API_URL_VERSION"`
+	LogFolder         string `mapstructure:"LOG_FOLDER"`
 	HttpPort          int    `mapstructure:"HTTP_PORT"`
 	ServerReadTimeOut int    `mapstructure:"SERVER_READ_TIMEOUT"`
 	Prefork           bool   `mapstructure:"PREFORK"`

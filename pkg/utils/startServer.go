@@ -11,7 +11,7 @@ import (
 )
 
 // StartServerWithGracefulShutdown function for starting server with a graceful shutdown.
-func StartServerWithGracefulShutdown(a *fiber.App, config config.Config) {
+func StartServerWithGracefulShutdown(a *fiber.App, config config.Config, logFile *os.File) {
 	// Create channel for idle connections.
 	idleConnsClosed := make(chan struct{})
 
@@ -27,6 +27,10 @@ func StartServerWithGracefulShutdown(a *fiber.App, config config.Config) {
 		}
 
 		close(idleConnsClosed)
+		log.Println("Shutting down server...")
+		// Clossing the Fiber Log File
+		defer logFile.Close()
+		log.Println("Close log file...")
 	}()
 
 	// Run server.

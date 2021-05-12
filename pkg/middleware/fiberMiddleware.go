@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"log"
 	"os"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,12 +11,19 @@ import (
 
 // FiberMiddleware provide Fiber's built-in middlewares.
 // See: https://docs.gofiber.io/api/middleware
-func FiberMiddleware(a *fiber.App) {
-	file, err := os.OpenFile("./log/fiber.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-	if err != nil {
-		log.Fatalf("error opening file: %v", err)
+func FiberMiddleware(a *fiber.App, logFile *os.File) {
+	// file, err := os.OpenFile("./log/fiber.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	// if err != nil {
+	// 	log.Fatalf("error opening file: %v", err)
+	// }
+
+	var ConfigLogger = logger.Config{
+		Next:       nil,
+		Format:     "[${time}] ${pid} ${locals:requestid} ${status} - ${latency} ${method} ${path}\n",
+		TimeFormat: "2006/Jan/02 15:04:05",
+		TimeZone:   "Asia/Jakarta",
+		Output:     logFile,
 	}
-	// defer file.Close()
 
 	a.Use(
 		// Add CORS to each route.
@@ -31,13 +37,15 @@ func FiberMiddleware(a *fiber.App) {
 			MaxAge:           0,
 		}),
 		// Add logger.
-		logger.New(logger.Config{
-			Format:     "[${time}] ${pid} ${locals:requestid} ${status} - ${latency} ${method} ${path}\n",
-			TimeFormat: "2006/Jan/02 15:04:05",
-			TimeZone:   "Asia/Jakarta",
-			Output:     file,
-		}),
+		logger.New(ConfigLogger),
+		// logger.New(logger.Config{
+		// 	Format:     "[${time}] ${pid} ${locals:requestid} ${status} - ${latency} ${method} ${path}\n",
+		// 	TimeFormat: "2006/Jan/02 15:04:05",
+		// 	TimeZone:   "Asia/Jakarta",
+		// 	Output:     file,
+		// }),
 		// Add Compress
+
 		compress.New(compress.Config{
 			Level: compress.LevelBestSpeed,
 		}),
