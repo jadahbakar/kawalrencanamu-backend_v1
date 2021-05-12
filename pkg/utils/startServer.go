@@ -28,15 +28,16 @@ func StartServerWithGracefulShutdown(a *fiber.App, config config.Config, logFile
 
 		close(idleConnsClosed)
 		log.Println("Shutting down server...")
-		// Clossing the Fiber Log File
-		defer logFile.Close()
-		log.Println("Close log file...")
+
 	}()
 
 	// Run server.
 	if err := a.Listen(fmt.Sprintf(":%d", config.HttpPort)); err != nil {
 		log.Printf("Server is not running! Reason: %v", err)
 	}
+	// Clossing the Fiber Log File
+	defer logFile.Close()
+	log.Println("Close log file...")
 
 	<-idleConnsClosed
 }
