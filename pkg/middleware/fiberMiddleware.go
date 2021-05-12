@@ -18,7 +18,7 @@ func FiberMiddleware(a *fiber.App, logFile *os.File) {
 
 	ConfigLogger := logger.Config{
 		Next:       nil,
-		Format:     "[${time}] ${pid} ${locals:requestid} ${status} - ${latency} ${method} ${path}\n",
+		Format:     "[${time}] ${pid} | ${ip} | ${status} - ${latency} | ${method} | ${path}\n",
 		TimeFormat: "2006/Jan/02 15:04:05",
 		TimeZone:   "Asia/Jakarta",
 		Output:     logFile,
@@ -50,6 +50,7 @@ func FiberMiddleware(a *fiber.App, logFile *os.File) {
 	}
 
 	a.Use(
+		// requestid.New(),
 		// Add CORS to each route.
 		cors.New(ConfigCORS),
 		// Add logger.

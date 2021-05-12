@@ -1,4 +1,4 @@
-package service
+package me
 
 import "github.com/gofiber/fiber/v2"
 
@@ -13,4 +13,5 @@ func GetMe(c *fiber.Ctx) error {
 		"error": false,
 		"msg":   "Kawal Rencanamu",
 	})
+	// return c.JSON(c.IP())
 }
