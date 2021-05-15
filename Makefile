@@ -8,12 +8,12 @@ include app.env
 NAME					= $(APP_NAME)
 VERSION 				= $(shell git describe --tags --always)
 
-BUILD_LDFLAGS 			= -s -w
+BUILD_LDFLAGS			= -s -w
 DOCKER_CONTAINER_NAME	= $(NAME)
 DOCKER_IMAGE_NAME		= $(NAME):$(VERSION)
 
-IMAGE_NAME_EXIST 		= $(shell docker images -aq ${DOCKER_IMAGE_NAME})
-CONTAINER_NAME_EXIST 	= $(shell docker ps -aq --filter name=${DOCKER_CONTAINER_NAME})
+IMAGE_NAME_EXIST		= $(shell docker images -aq ${DOCKER_IMAGE_NAME})
+CONTAINER_NAME_EXIST	= $(shell docker ps -aq --filter name=${DOCKER_CONTAINER_NAME})
 SYSTEM_NAME				= ${NAME}" - "${VERSION}
 
 
