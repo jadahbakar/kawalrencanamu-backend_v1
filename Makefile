@@ -1,3 +1,7 @@
+#  ____ __ _  _  _ __ ____  __  __ _ _  _ ____ __ _ ____ 
+# (  __|  ( \/ )( (  |  _ \/  \(  ( ( \/ |  __|  ( (_  _)
+#  ) _)/    /\ \/ /)( )   (  O )    / \/ \) _)/    / )(  
+# (____)_)__) \__/(__|__\_)\__/\_)__)_)(_(____)_)__)(__) 
 # get variable from env file
 include app.env
 # environment variables
@@ -13,9 +17,10 @@ CONTAINER_NAME_EXIST 	= $(shell docker ps -aq --filter name=${DOCKER_CONTAINER_N
 SYSTEM_NAME				= ${NAME}" - "${VERSION}
 
 
-# ┌┬┐┌─┐┌─┐┌┬┐
-#  │ ├┤ └─┐ │ 
-#  ┴ └─┘└─┘ ┴ 
+#  ____ ____ ____ ____ 
+# (_  _|  __) ___|_  _)
+#   )(  ) _)\___ \ )(  
+#  (__)(____|____/(__) 
 
 tidy:
 	@echo "Running $@"
@@ -25,18 +30,17 @@ lint:
 	@clear
 	@go fmt ./...
 
-# ┌┐ ┬ ┬┬┬  ┌┬┐
-# ├┴┐│ │││   ││
-# └─┘└─┘┴┴─┘─┴┘
+#  ____  _  _ __ __   ____ 
+# (  _ \/ )( (  |  ) (    \
+#  ) _ () \/ ()(/ (_/\) D (
+# (____/\____(__)____(____/
+
 build:
 	@echo "Building flottbot binary to './binary'"
 	@go build -a \
 		-ldflags '$(BUILD_LDFLAGS)' -o $(PWD)/binary ./cmd
 
 
-# ┌┬┐┌─┐┌─┐┬┌─┌─┐┬─┐
-#  │││ ││  ├┴┐├┤ ├┬┘
-# ─┴┘└─┘└─┘┴ ┴└─┘┴└─
 
 #  ____  __   ___ __ _ ____ ____ 
 # (    \/  \ / __|  / |  __|  _ \
@@ -72,6 +76,11 @@ docker-flavors:
 docker-clear:
 	@echo "Cleaning Docker kawalrencanamu";
 	@if [ -n "$(IMAGE_NAME_EXIST)" ]; then docker image rm $(IMAGE_NAME_EXIST) --force; fi;
+
+#  ____  __   ___ __ _ ____ ____      ___ __  _  _ ____  __  ____ ____ 
+# (    \/  \ / __|  / |  __|  _ \___ / __)  \( \/ |  _ \/  \/ ___|  __)
+#  ) D (  O | (__ )  ( ) _) )   (___| (_(  O ) \/ \) __(  O )___ \) _) 
+# (____/\__/ \___|__\_|____|__\_)    \___)__/\_)(_(__)  \__/(____(____)
 
 compose-build:
 	@echo "Compose Up";
