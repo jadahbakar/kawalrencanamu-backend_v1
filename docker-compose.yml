@@ -20,6 +20,7 @@ services:
     build:
       context: .
       target: builder
+    container_name: kawalrencanamu
     image: kawalrencanamu
     env_file: ./app.env
     expose:

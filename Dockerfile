@@ -1,6 +1,7 @@
-
 FROM golang:alpine AS builder
-
+ARG TAGGED 
+LABEL maintainer="dedy styawan <dedy.styawan@gmail.com>"
+LABEL tagged=$TAGGED
 WORKDIR /src
 RUN go get github.com/cespare/reflex
 # Allow for caching
@@ -14,6 +15,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
   -o binary ./cmd
 
 FROM alpine
+LABEL maintainer="dedy styawan <dedy.styawan@gmail.com>"
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /src/binary /binary
 
