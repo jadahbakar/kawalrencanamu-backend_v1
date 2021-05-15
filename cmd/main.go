@@ -1,16 +1,29 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2" // new
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/config"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/middleware"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/routes"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/utils"
+	"github.com/jadahbakar/kawalrencanamu-backend/version"
 )
 
 func main() {
+	ver := flag.Bool("version", false, "print version information")
+	v := flag.Bool("v", false, "print version information")
+
+	flag.Parse()
+	if *v || *ver {
+		fmt.Println(version.String())
+		os.Exit(0)
+	}
+
 	// Load env.
 	confApp, err := config.LoadConfig()
 	if err != nil {

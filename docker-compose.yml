@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  reverse-proxy:
+    # The official v2 Traefik docker image
+    image: traefik:v2.4
+    # Enables the web UI and tells Traefik to listen to docker
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker"
+      - "--providers.docker.exposedByDefault=false"
+    ports:
+      # The HTTP port
+      - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8000:8000"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+  kawalrencanamu:
+    build:
+      context: .
+      target: builder
+    image: kawalrencanamu
+    env_file: ./app.env
+    expose:
+      - "8000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kawalrencanamu.rule=Host(`kawalrencanamu.com`) && PathPrefix(`/api/v1`)"
+    # have to use $$ (double-dollar) so docker doesn't try to substitute a variable
+    command: reflex -r "\.go$$" -s -- sh -c "go run ./cmd"

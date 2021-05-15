@@ -105,48 +105,33 @@ kawalrencanamu-backend/
 ├── README.md
 ├── app.env
 ├── cmd
-│   └── httpserver
-│       └── main.go
+│   └── httpserver
+│       └── main.go
 ├── go.mod
 ├── go.sum
 ├── images
-│   ├── golang.svg
-│   └── kawalrencanamu.png
+│   ├── golang.svg
+│   └── kawalrencanamu.png
 ├── internal
-│   ├── core
-│   │   ├── authenticate
-│   │   │   ├── domain
-│   │   │   │   └── domain.go
-│   │   │   ├── ports
-│   │   │   │   └── ports.go
-│   │   │   └── service
-│   │   │       └── service.go
-│   │   ├── me
-│   │   │   ├── domain
-│   │   │   ├── ports
-│   │   │   │   └── services.go
-│   │   │   └── service
-│   │   │       └── service.go
-│   │   └── user
-│   │       ├── domain
-│   │       │   └── domain.go
-│   │       ├── ports
-│   │       │   └── ports.go
-│   │       └── service
-│   │           └── service.go
-│   ├── handlers
-│   │   └── me
-│   │       └── me.go
-│   └── repositories
-│       └── repo.go
+│   └── me
+│       └── service.go
+├── log
+│   └── fiber.log
 ├── log.md
 └── pkg
     ├── config
-    │   ├── appConfig.go
-    │   └── fiberConfig.go
+    │   ├── appConfig.go
+    │   ├── fiberConfig.go
+    │   └── logerConfig.go
     ├── middleware
-    │   └── fiberMiddleware.go
+    │   ├── fiberMiddleware.go
+    │   └── jwtMiddleware.go
+    ├── routes
+    │   ├── not_found_route.go
+    │   └── public_routes.go
     └── utils
+        ├── jwt_generator.go
+        ├── jwt_parser.go
         └── startServer.go
 ```
 
@@ -168,25 +153,16 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+* [Build Docker Image](https://github.com/target/flottbot/blob/master/docker/Dockerfile)
+* [Building APIs with Go — Part 2 --> the newest ](https://fernando-bandeira.medium.com/building-apis-with-go-part-2-4afc50fd0ff8)
 * [hexagonal-architecture-in-go -> using it now](https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3)
 * [stygis-golang-hexagonal-architecture](https://idevoid.medium.com/stygis-golang-hexagonal-architecture-a2d89d01f84b)
 * [how-i-structure-services-in-go](https://medium.com/@ott.kristian/how-i-structure-services-in-go-19147ad0e6bd)
 * [Load config from file & environment variables in Golang with Viper](https://dev.to/techschoolguru/load-config-from-file-environment-variables-in-golang-with-viper-2j2d)
 * [Go Fiber](https://gofiber.io/)
 * [Go Fiber 2](https://dev.to/koddr/build-a-restful-api-on-go-fiber-postgresql-jwt-and-swagger-docs-in-isolated-docker-containers-475j)
-<!-- 
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com) 
--->
+* [semver for versioning](https://github.com/Masterminds/semver/)
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
