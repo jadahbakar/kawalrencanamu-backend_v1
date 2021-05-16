@@ -18,6 +18,7 @@ FROM alpine
 LABEL maintainer="dedy styawan <dedy.styawan@gmail.com>"
 RUN apk --no-cache add ca-certificates
 COPY --from=builder /src/binary /binary
+COPY --from=builder /src/app.env /src/app.env
 
 EXPOSE 8000
 

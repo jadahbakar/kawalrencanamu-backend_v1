@@ -1,7 +1,6 @@
 version: "3.8"
 services:
   reverse-proxy:
-    # The official v2 Traefik docker image
     image: traefik:v2.4
     # Enables the web UI and tells Traefik to listen to docker
     command:
@@ -16,15 +15,19 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
+
   kawalrencanamu:
     build:
       context: .
+      dockerfile: Dockerfile
       target: builder
     container_name: kawalrencanamu
     image: kawalrencanamu
-    env_file: ./app.env
+    depends_on: 
+      - reverse-proxy
     expose:
       - "8000"
+    env_file: ./app.env
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kawalrencanamu.rule=Host(`kawalrencanamu.com`) && PathPrefix(`/api/v1`)"

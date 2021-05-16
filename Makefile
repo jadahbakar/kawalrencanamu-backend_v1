@@ -14,8 +14,17 @@ DOCKER_IMAGE_NAME		= $(NAME):$(VERSION)
 
 IMAGE_NAME_EXIST		= $(shell docker images -aq ${DOCKER_IMAGE_NAME})
 CONTAINER_NAME_EXIST	= $(shell docker ps -aq --filter name=${DOCKER_CONTAINER_NAME})
-SYSTEM_NAME				= ${NAME}" - "${VERSION}
+DOCKER_HUB_REPO			= dedystyawan/kawalrencanamu-backend
 
+#   __   __    __      __ __ _     __  __ _ ____ 
+#  / _\ (  )  (  )    (  |  ( \   /  \(  ( (  __)
+# /    \/ (_/\/ (_/\   )(/    /  (  O )    /) _) 
+# \_/\_/\____/\____/  (__)_)__)   \__/\_)__|____)
+
+# up: lint clean docker-build docker-push docker-run
+up: lint clean docker-build compose-up
+
+clean: compose-down docker-remove-container docker-remove-image
 
 #  ____ ____ ____ ____ 
 # (_  _|  __) ___|_  _)
@@ -23,23 +32,29 @@ SYSTEM_NAME				= ${NAME}" - "${VERSION}
 #  (__)(____|____/(__) 
 
 tidy:
-	@echo "Running $@"
+	@echo "-> Running $@"
 	@go mod tidy
 
 lint:
-	@clear
+	# @clear
+	@echo "-> Running $@"
 	@go fmt ./...
+
+start: lint
+	# @clear
+	@echo "-> Running $@"
+	@go run cmd/main.go
+
 
 #  ____  _  _ __ __   ____ 
 # (  _ \/ )( (  |  ) (    \
 #  ) _ () \/ ()(/ (_/\) D (
 # (____/\____(__)____(____/
 
-build:
-	@echo "Building flottbot binary to './binary'"
+go-build:
+	@echo "-> Building flottbot binary to './binary'"
 	@go build -a \
 		-ldflags '$(BUILD_LDFLAGS)' -o $(PWD)/binary ./cmd
-
 
 
 #  ____  __   ___ __ _ ____ ____ 
@@ -49,50 +64,61 @@ build:
                                           
                                
 docker-build:
+	@echo "-> Running $@"
 	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file Dockerfile --tag $(DOCKER_IMAGE_NAME) .
-	# @docker image prune --filter label=tagged=builder-${DOCKER_IMAGE_NAME} --force
+# 	# @docker image prune --filter label=tagged=builder-${DOCKER_IMAGE_NAME} --force
 
+# docker-build_second:
+# 	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file Dockerfile .
 
-docker-build_second:
-	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file Dockerfile .
+# docker-flavors:
+# 	@echo "Creating image for $$flavor"; 
+# 	@docker build \
+# 		--build-arg "VERSION=$(VERSION)" \
+# 		--build-arg "GIT_HASH=$(GIT_HASH)" \
+# 		-f "./docker/Dockerfile.$$flavor" \
+# 		-t $(DOCKER_IMAGE_NAME):$$flavor \
+# 		-t $(DOCKER_IMAGE_NAME):$$flavor-$(VERSION) .; \
 
-docker-base:
-	@echo "Creating base $@ image"
-	@docker build \
-		-f "./Dockerfile" \
-		-t $(DOCKER_IMAGE_NAMEX):$(VERSION) \
-		-t $(DOCKER_IMAGE_NAMEX):latest .
+docker-push:
+	@echo "-> Running $@"
+	@docker tag $(DOCKER_IMAGE_NAME) $(DOCKER_HUB_REPO):latest
+	@echo $(DOCKER_IMAGE_NAME) $(DOCKER_HUB_REPO):$(VERSION)
+	@docker tag $(DOCKER_IMAGE_NAME) $(DOCKER_HUB_REPO):$(VERSION)
+	@docker push $(DOCKER_HUB_REPO)
 
+# docker-run:
+# 	@docker run --rm --detach --name $(DOCKER_CONTAINER_NAME) -p $(PORT):$(PORT) $(DOCKER_HUB_REPO)
 
-docker-flavors:
-	@echo "Creating image for $$flavor"; 
-	@docker build \
-		--build-arg "VERSION=$(VERSION)" \
-		--build-arg "GIT_HASH=$(GIT_HASH)" \
-		-f "./docker/Dockerfile.$$flavor" \
-		-t $(DOCKER_IMAGE_NAME):$$flavor \
-		-t $(DOCKER_IMAGE_NAME):$$flavor-$(VERSION) .; \
+# docker-build:
+# 	@echo "Creating base $@ image";
+# 	@docker build \
+# 		-f "./Dockerfile" \
+# 		-t $(DOCKER_IMAGE_NAME) .
 
-docker-clear:
-	@echo "Cleaning Docker kawalrencanamu";
+docker-remove-image:
+	@echo "-> Running $@";
 	@if [ -n "$(IMAGE_NAME_EXIST)" ]; then docker image rm $(IMAGE_NAME_EXIST) --force; fi;
+
+
+docker-remove-container:
+	@echo "-> Running $@"
+	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
+
 
 #  ____  __   ___ __ _ ____ ____      ___ __  _  _ ____  __  ____ ____ 
 # (    \/  \ / __|  / |  __|  _ \___ / __)  \( \/ |  _ \/  \/ ___|  __)
 #  ) D (  O | (__ )  ( ) _) )   (___| (_(  O ) \/ \) __(  O )___ \) _) 
 # (____/\__/ \___|__\_|____|__\_)    \___)__/\_)(_(__)  \__/(____(____)
 
-compose-build:
-	@echo "Compose Up";
+compose-up: compose-down
+	@echo "-> Running $@";
 	@docker-compose up --build;
 
-compose-clean:
-	@clear
-	# @echo "Compose Clean - "$(SYSTEM_NAME);
-	@echo "Compose Clean";
-	@docker-compose stop
+compose-down:
+	@echo "-> Running $@";
+	@docker-compose stop;
+
+compose-clean: compose-down
+	@echo "-> Running $@";
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
-	@if [ -n "$(IMAGE_NAME_EXIST)" ]; then docker image rm $(IMAGE_NAME_EXIST) --force; fi;
-
-
-
