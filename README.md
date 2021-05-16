@@ -163,6 +163,7 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 * [Go Fiber 2](https://dev.to/koddr/build-a-restful-api-on-go-fiber-postgresql-jwt-and-swagger-docs-in-isolated-docker-containers-475j)
 * [semver for versioning](https://github.com/Masterminds/semver/)
 * [string to ascii](https://patorjk.com/software/taag/#p=display&h=2&v=3&f=Graceful&t=BUILD)
+* [how-to-build-a-smaller-docker-image](https://medium.com/@gdiener/how-to-build-a-smaller-docker-image-76779e18d48a)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
