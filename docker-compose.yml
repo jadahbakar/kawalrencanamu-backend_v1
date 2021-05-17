@@ -31,4 +31,4 @@ services:
     volumes:
       - .:/src
     # have to use $$ (double-dollar) so docker doesn't try to substitute a variable
-    command: reflex -r "\.go$$" -s -- sh -c './binary'
+    command: reflex -r "\.go$$" -s -- sh -c "go run ./binary"
