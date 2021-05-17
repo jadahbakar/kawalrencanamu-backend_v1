@@ -19,18 +19,16 @@ services:
   kawalrencanamu:
     build:
       context: .
-      dockerfile: Dockerfile
       target: builder
-    container_name: kawalrencanamu
     image: kawalrencanamu
-    depends_on: 
-      - reverse-proxy
     expose:
       - "8000"
-    env_file: ./app.env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kawalrencanamu.rule=Host(`kawalrencanamu.com`) && PathPrefix(`/api/v1`)"
+      - "traefik.http.routers.account.rule=Host(`kawalrencanamu.test`) && PathPrefix(`/api/account`)"
+    environment:
+      - ENV=dev
+    volumes:
+      - .:/src
     # have to use $$ (double-dollar) so docker doesn't try to substitute a variable
-    # command: reflex -s -r "\.go$$" -- sh -c "go run ./binary" 
-    command: reflex -s -r "\.go$$" -- sh -c "./binary"
+    command: reflex -r "\.go$$" -s -- sh -c "go run ./binary"

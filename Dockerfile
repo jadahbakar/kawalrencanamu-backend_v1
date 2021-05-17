@@ -1,8 +1,9 @@
 FROM golang:alpine AS builder
 LABEL maintainer="dedy styawan <dedy.styawan@gmail.com>"
+WORKDIR /src
 ARG TAGGED 
 LABEL tagged=$TAGGED
-WORKDIR /src
+ENV GO111MODULE=on
 RUN go get github.com/cespare/reflex
 COPY go.mod go.sum ./
 RUN go mod download
