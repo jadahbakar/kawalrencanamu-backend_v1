@@ -45,4 +45,5 @@ func main() {
 
 	// Start server (with graceful shutdown).
 	utils.StartServerWithGracefulShutdown(app, confApp, fileLogger)
+	// utils.StartServer(app, confApp)
 }

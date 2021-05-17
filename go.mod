@@ -5,6 +5,7 @@ go 1.16
 require (
 	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/andybalholm/brotli v1.0.2 // indirect
+	github.com/cespare/reflex v0.3.0 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gofiber/fiber/v2 v2.9.0
 	github.com/gofiber/jwt/v2 v2.2.1

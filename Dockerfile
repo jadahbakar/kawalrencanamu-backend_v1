@@ -4,7 +4,6 @@ ARG TAGGED
 LABEL tagged=$TAGGED
 WORKDIR /src
 RUN go get github.com/cespare/reflex
-# Allow for caching
 COPY go.mod go.sum ./
 RUN go mod download
 

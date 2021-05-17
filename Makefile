@@ -26,6 +26,31 @@ up: lint clean docker-build compose-up
 
 clean: compose-down docker-remove-container docker-remove-image
 
+
+#  ____ ____ _  _ ____ __    __ ____ _  _ ____ __ _ ____ 
+# (    (  __) )( (  __|  )  /  (  _ ( \/ |  __|  ( (_  _)
+#  ) D () _)\ \/ /) _)/ (_/(  O ) __/ \/ \) _)/    / )(  
+# (____(____)\__/(____)____/\__(__) \_)(_(____)_)__)(__) 
+
+build:
+	@echo "-> Running $@"
+	@go build -a -ldflags "-s -w " -o binary ./cmd
+
+run: build
+	@echo "-> Running $@"
+	./binary
+
+# reflex -r "\.go$$" -s -- sh -c "go run ./cmd"
+#  reflex --start-service -r '(*\.go$|\go.mod)' make run
+# @reflex -r '\.go' -s -- sh -c "go run cmd/api/main.go"
+# reflex --start-service -r '\.go' - sh -c "go run cmd/main.go"
+# reflex -r '\.go' -s -- sh -c "go run main.go" 
+# @reflex -r '.\.go' -R '._test\.go' -d 'none' make run
+watch:
+	@echo "-> Running $@";
+	@ulimit -n 1000;
+	@reflex -s -r '\.go$$' make run
+
 #  ____ ____ ____ ____ 
 # (_  _|  __) ___|_  _)
 #   )(  ) _)\___ \ )(  
