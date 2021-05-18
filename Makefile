@@ -21,7 +21,7 @@ DOCKER_HUB_REPO			= dedystyawan/kawalrencanamu-backend
 # /    \/ (_/\/ (_/\   )(/    /  (  O )    /) _) 
 # \_/\_/\____/\____/  (__)_)__)   \__/\_)__|____)
 
-# up: lint clean docker-build docker-push docker-run
+
 up: lint clean docker-build compose-up
 
 clean: compose-down docker-remove-container docker-remove-image
@@ -40,12 +40,6 @@ run: build
 	@echo "-> Running $@"
 	./binary
 
-# reflex -r "\.go$$" -s -- sh -c "go run ./cmd"
-#  reflex --start-service -r '(*\.go$|\go.mod)' make run
-# @reflex -r '\.go' -s -- sh -c "go run cmd/api/main.go"
-# reflex --start-service -r '\.go' - sh -c "go run cmd/main.go"
-# reflex -r '\.go' -s -- sh -c "go run main.go" 
-# @reflex -r '.\.go' -R '._test\.go' -d 'none' make run
 watch:
 	@echo "-> Running $@";
 	@ulimit -n 1000;
@@ -85,25 +79,13 @@ go-build:
 #  ____  __   ___ __ _ ____ ____ 
 # (    \/  \ / __|  / |  __|  _ \
 #  ) D (  O | (__ )  ( ) _) )   /
-# (____/\__/ \___|__\_|____|__\_)
-                                          
-                               
+# (____/\__/ \___|__\_|____|__\_)                                          
+
+
 docker-build:
 	@echo "-> Running $@"
 	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file Dockerfile --tag $(DOCKER_IMAGE_NAME) .
 # 	# @docker image prune --filter label=tagged=builder-${DOCKER_IMAGE_NAME} --force
-
-# docker-build_second:
-# 	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file Dockerfile .
-
-# docker-flavors:
-# 	@echo "Creating image for $$flavor"; 
-# 	@docker build \
-# 		--build-arg "VERSION=$(VERSION)" \
-# 		--build-arg "GIT_HASH=$(GIT_HASH)" \
-# 		-f "./docker/Dockerfile.$$flavor" \
-# 		-t $(DOCKER_IMAGE_NAME):$$flavor \
-# 		-t $(DOCKER_IMAGE_NAME):$$flavor-$(VERSION) .; \
 
 docker-push:
 	@echo "-> Running $@"
@@ -111,15 +93,7 @@ docker-push:
 	@echo $(DOCKER_IMAGE_NAME) $(DOCKER_HUB_REPO):$(VERSION)
 	@docker tag $(DOCKER_IMAGE_NAME) $(DOCKER_HUB_REPO):$(VERSION)
 	@docker push $(DOCKER_HUB_REPO)
-
-# docker-run:
-# 	@docker run --rm --detach --name $(DOCKER_CONTAINER_NAME) -p $(PORT):$(PORT) $(DOCKER_HUB_REPO)
-
-# docker-build:
-# 	@echo "Creating base $@ image";
-# 	@docker build \
-# 		-f "./Dockerfile" \
-# 		-t $(DOCKER_IMAGE_NAME) .
+		-t $(DOCKER_IMAGE_NAME) .
 
 docker-remove-image:
 	@echo "-> Running $@";
@@ -150,3 +124,49 @@ compose-clean: compose-down
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
 	@docker rmi $(docker images | grep 'kawalrencanamu');
 	@docker system prune
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# up: lint clean docker-build docker-push docker-run
+
+# reflex -r "\.go$$" -s -- sh -c "go run ./cmd"
+#  reflex --start-service -r '(*\.go$|\go.mod)' make run
+# @reflex -r '\.go' -s -- sh -c "go run cmd/api/main.go"
+# reflex --start-service -r '\.go' - sh -c "go run cmd/main.go"
+# reflex -r '\.go' -s -- sh -c "go run main.go" 
+# @reflex -r '.\.go' -R '._test\.go' -d 'none' make run
+
+# docker-build_second:
+# 	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file Dockerfile .
+
+# docker-flavors:
+# 	@echo "Creating image for $$flavor"; 
+# 	@docker build \
+# 		--build-arg "VERSION=$(VERSION)" \
+# 		--build-arg "GIT_HASH=$(GIT_HASH)" \
+# 		-f "./docker/Dockerfile.$$flavor" \
+# 		-t $(DOCKER_IMAGE_NAME):$$flavor \
+# 		-t $(DOCKER_IMAGE_NAME):$$flavor-$(VERSION) .; \
+
+
+# docker-run:
+# 	@docker run --rm --detach --name $(DOCKER_CONTAINER_NAME) -p $(PORT):$(PORT) $(DOCKER_HUB_REPO)
+
+# docker-build:
+# 	@echo "Creating base $@ image";
+# 	@docker build \
+# 		-f "./Dockerfile" \
+# 
