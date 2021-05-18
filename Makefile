@@ -146,4 +146,7 @@ compose-down:
 
 compose-clean: compose-down
 	@echo "-> Running $@";
+	@docker-compose down;
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
+	@docker rmi $(docker images | grep 'kawalrencanamu');
+	@docker system prune

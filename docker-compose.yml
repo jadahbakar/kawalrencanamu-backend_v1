@@ -4,9 +4,17 @@ services:
     image: traefik:v2.4
     # Enables the web UI and tells Traefik to listen to docker
     command:
+      # - "--api.insecure=true"
+      # - "--providers.docker"
+      # - "--providers.docker.exposedByDefault=false"
+      #- "--log.level=DEBUG"
       - "--api.insecure=true"
-      - "--providers.docker"
-      - "--providers.docker.exposedByDefault=false"
+      # Enabling docker provider
+      - "--providers.docker=true"
+      # Do not expose containers unless explicitly told so
+      - "--providers.docker.exposedbydefault=false"
+      # Traefik will listen to incoming request on the port 80 (HTTP)
+      - "--entrypoints.web.address=:80"
     ports:
       # The HTTP port
       - "80:80"
@@ -14,7 +22,8 @@ services:
       - "8000:8000"
     volumes:
       # So that Traefik can listen to the Docker events
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
   kawalrencanamu:
     build:
@@ -29,9 +38,14 @@ services:
       - "8000"
     env_file: ./app.env
     labels:
+      # Explicitly tell Traefik to expose this container
       - "traefik.enable=true"
+      # The domain the service will respond to
       - "traefik.http.routers.kawalrencanamu.rule=Host(`kawalrencanamu.com`) && PathPrefix(`/api/v1`)"
+      # Allow request only from the predefined entry point named "web"
+      - "traefik.http.routers.kawalrencanamu.entrypoints=web"
     # have to use $$ (double-dollar) so docker doesn't try to substitute a variable
     # command: reflex -s -r "\.go$$" -- sh -c "go run ./binary" 
     # command: reflex -s -r "\.go$$" -- sh -c "./binary"
-    entrypoint: reflex -s -r "\.go$$" -- sh -c "echo 'Berubah'"
+    # entrypoint: reflex -r "\.go$$" -s -- sh -c "go run ./cmd/"
+    command: reflex -r "\.go$$" -s -- sh -c "go run ./cmd/"

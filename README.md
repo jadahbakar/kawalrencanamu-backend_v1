@@ -164,7 +164,8 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 * [semver for versioning](https://github.com/Masterminds/semver/)
 * [string to ascii](https://patorjk.com/software/taag/#p=display&h=2&v=3&f=Graceful&t=BUILD)
 * [how-to-build-a-smaller-docker-image](https://medium.com/@gdiener/how-to-build-a-smaller-docker-image-76779e18d48a)
-* [go-docker-dev-environment-with-go-modules-and-live-code-reloading](https://threedots.tech/post/go-docker-dev-environment-with-go-modules-and-live-code-reloading/)
+* [go-docker-dev-environment-with-go-modules-and-live-code-reloading](https://threedots.tech/post/go-docker-dev-environment-with-go-modules-and-live-code-reloading/)t
+* [self-compiling-go-docker-container](https://www.getwrecked.com/self-compiling-go-docker-container/)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
