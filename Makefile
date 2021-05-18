@@ -2,6 +2,7 @@
 # (  __|  ( \/ )( (  |  _ \/  \(  ( ( \/ |  __|  ( (_  _)
 #  ) _)/    /\ \/ /)( )   (  O )    / \/ \) _)/    / )(  
 # (____)_)__) \__/(__|__\_)\__/\_)__)_)(_(____)_)__)(__) 
+
 # get variable from env file
 include app.env
 # environment variables
@@ -16,11 +17,11 @@ IMAGE_NAME_EXIST		= $(shell docker images -aq ${DOCKER_IMAGE_NAME})
 CONTAINER_NAME_EXIST	= $(shell docker ps -aq --filter name=${DOCKER_CONTAINER_NAME})
 DOCKER_HUB_REPO			= dedystyawan/kawalrencanamu-backend
 
+
 #   __   __    __      __ __ _     __  __ _ ____ 
 #  / _\ (  )  (  )    (  |  ( \   /  \(  ( (  __)
 # /    \/ (_/\/ (_/\   )(/    /  (  O )    /) _) 
 # \_/\_/\____/\____/  (__)_)__)   \__/\_)__|____)
-
 
 up: lint clean docker-build compose-up
 
@@ -44,6 +45,7 @@ watch:
 	@echo "-> Running $@";
 	@ulimit -n 1000;
 	@reflex -s -r '\.go$$' make run
+
 
 #  ____ ____ ____ ____ 
 # (_  _|  __) ___|_  _)
@@ -80,7 +82,6 @@ go-build:
 # (    \/  \ / __|  / |  __|  _ \
 #  ) D (  O | (__ )  ( ) _) )   /
 # (____/\__/ \___|__\_|____|__\_)                                          
-
 
 docker-build:
 	@echo "-> Running $@"
