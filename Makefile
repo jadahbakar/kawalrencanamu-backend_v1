@@ -23,6 +23,7 @@ DOCKER_HUB_REPO			= dedystyawan/kawalrencanamu-backend
 # /    \/ (_/\/ (_/\   )(/    /  (  O )    /) _) 
 # \_/\_/\____/\____/  (__)_)__)   \__/\_)__|____)
 
+# up: lint clean docker-build docker-push docker-run
 up: lint clean docker-build compose-up
 
 clean: compose-down docker-remove-container docker-remove-image
@@ -123,7 +124,6 @@ compose-clean: compose-down
 	@echo "-> Running $@";
 	@docker-compose down;
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
-	@docker rmi $(docker images | grep 'kawalrencanamu');
 	@docker system prune
 
 

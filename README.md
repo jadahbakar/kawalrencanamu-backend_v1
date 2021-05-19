@@ -101,38 +101,45 @@ To get a local copy up and running follow these simple example steps.
 
 ```
 kawalrencanamu-backend/
+├── Dockerfile
 ├── LICENSE.txt
+├── Makefile
 ├── README.md
 ├── app.env
 ├── cmd
-│   └── httpserver
-│       └── main.go
+│   └── main.go
+├── docker-compose.yml
 ├── go.mod
 ├── go.sum
 ├── images
-│   ├── golang.svg
-│   └── kawalrencanamu.png
+│   ├── golang.svg
+│   └── kawalrencanamu.png
 ├── internal
-│   └── me
-│       └── service.go
+│   ├── core
+│   │   └── me
+│   │       └── domain
+│   └── me
+│       └── service.go
 ├── log
-│   └── fiber.log
+│   └── fiber.log
 ├── log.md
-└── pkg
-    ├── config
-    │   ├── appConfig.go
-    │   ├── fiberConfig.go
-    │   └── logerConfig.go
-    ├── middleware
-    │   ├── fiberMiddleware.go
-    │   └── jwtMiddleware.go
-    ├── routes
-    │   ├── not_found_route.go
-    │   └── public_routes.go
-    └── utils
-        ├── jwt_generator.go
-        ├── jwt_parser.go
-        └── startServer.go
+├── pkg
+│   ├── config
+│   │   ├── appConfig.go
+│   │   ├── fiberConfig.go
+│   │   └── logerConfig.go
+│   ├── middleware
+│   │   ├── fiberMiddleware.go
+│   │   └── jwtMiddleware.go
+│   ├── routes
+│   │   ├── not_found_route.go
+│   │   └── public_routes.go
+│   └── utils
+│       ├── jwt_generator.go
+│       ├── jwt_parser.go
+│       └── startServer.go
+└── version
+    └── version.go
 ```
 
 
