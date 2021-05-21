@@ -1,12 +1,13 @@
 version: "3.8"
 services:
   kawalrencanamu:
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
+    # build:
+    #   context: .
+      # dockerfile: dev.Dockerfile
+    image: kawalrencanamu:latest
     container_name: kawalrencanamu-backend
     ports:
-      - 8000
+      - 8000:8000
     env_file: ../../app.env
     volumes:
       - ../../:/app

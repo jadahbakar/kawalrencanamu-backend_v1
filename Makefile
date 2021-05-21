@@ -48,6 +48,24 @@ watch:
 	@reflex -s -r '\.go$$' make run
 
 
+#  ____ ____ _  _ ____ __    __ ____ _  _ ____ __ _ ____   ____  __   ___ __ _ ____ ____ 
+# (    (  __) )( (  __|  )  /  (  _ ( \/ |  __|  ( (_  _)_(    \/  \ / __|  / |  __|  _ \
+#  ) D () _)\ \/ /) _)/ (_/(  O ) __/ \/ \) _)/    / )((___) D (  O | (__ )  ( ) _) )   /
+# (____(____)\__/(____)____/\__(__) \_)(_(____)_)__)(__)  (____/\__/ \___|__\_|____|__\_)
+
+devel-up:
+	@echo "-> Running $@";
+	@docker build --build-arg TAGGED=builder-${DOCKER_IMAGE_NAME} --file ./docker/development/dev.Dockerfile --tag $(DOCKER_IMAGE_NAME) .
+	@docker tag $(DOCKER_IMAGE_NAME) $(DOCKER_CONTAINER_NAME):latest
+	@docker-compose -f ./docker/development/docker-compose.yml up
+
+devel-stop:
+	@echo "-> Running $@";
+	@docker-compose -f ./docker/development/docker-compose.yml stop
+
+
+devel-down: devel-stop docker-remove-container docker-remove-image docker-prune
+
 #  ____ ____ ____ ____ 
 # (_  _|  __) ___|_  _)
 #   )(  ) _)\___ \ )(  
@@ -106,6 +124,9 @@ docker-remove-container:
 	@echo "-> Running $@"
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
 
+docker-prune:
+	@echo "-> Running $@"
+	@docker system prune --force --all
 
 #  ____  __   ___ __ _ ____ ____      ___ __  _  _ ____  __  ____ ____ 
 # (    \/  \ / __|  / |  __|  _ \___ / __)  \( \/ |  _ \/  \/ ___|  __)
@@ -120,11 +141,10 @@ compose-down:
 	@echo "-> Running $@";
 	@docker-compose stop;
 
-compose-clean: compose-down
+compose-clean: compose-down docker-prune
 	@echo "-> Running $@";
 	@docker-compose down;
 	@if [ -n "$(CONTAINER_NAME_EXIST)" ]; then docker rm $(CONTAINER_NAME_EXIST) --force; fi;
-	@docker system prune
 
 
 
