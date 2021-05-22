@@ -282,13 +282,13 @@ kawalrencanamu-backend/
           * role_otoritas
           * user
 - [x] Create Makefile
-  - [x] Include external environment file (_app.env_)
-  - [x] All In One service (_up_ - _clean_)
-  - [x] Development (_build_ - _run_ - _watch_)
-  - [x] Development with Docker (_devel-up_ - _devel-stop_ - _devel-down_)
-  - [x] Build for Docker (_go-build_)
-  - [x] Docker (_docker-build_ - _docker-push_ - _docker-remove-image_ - _docker-remove-container_ - _docker-prune_)
-  - [x] Docker-Compose (_compose-up_ - _compose-down_ - _compose-clean_)
+  - [x] Include external environment file (_**app.env**_)
+  - [x] All In One service (_**up**_ - _**clean**_)
+  - [x] Development (_**build**_ - _**run**_ - _**watch**_)
+  - [x] Development with Docker (_**devel-up**_ - _**devel-stop**_ - _**devel-down**_)
+  - [x] Build for Docker (_**go-buil**_)
+  - [x] Docker (_**docker-build**_ - _**docker-push**_ - _**docker-remove-image**_ - _**docker-remove-container**_ - _**docker-prune**_)
+  - [x] Docker-Compose (_**compose-up**_ - _**compose-down**_ - _**compose-clean**_)
 - [ ] Next Will be Microservice Architechture
 
 
