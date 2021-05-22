@@ -258,6 +258,20 @@ kawalrencanamu-backend/
           * visi
           * visi_indikator
           * visi_phase
+      * Function
+          * generate_connector_id(OUT result int8)
+          * generate_id(sequence_name text, OUT result int8)
+          * generate_periode_id()
+      * Sequence
+          * connector_id
+          * misi_id
+          * misi_indikator_id
+          * periode_id
+          * value_id
+          * value_indikator_id
+          * visi_id
+          * visi_indikator_id
+          * visi_phase_id
   - [x] Schema sec (Security)
       * Table
           * group_user
@@ -267,7 +281,14 @@ kawalrencanamu-backend/
           * role_menu
           * role_otoritas
           * user
-- [ ] Create 
+- [x] Create Makefile
+  - [x] Include external environment file (_app.env_)
+  - [x] All In One service (_up_ - _clean_)
+  - [x] Development (_build_ - _run_ - _watch_)
+  - [x] Development with Docker (_devel-up_ - _devel-stop_ - _devel-down_)
+  - [x] Build for Docker (_go-build_)
+  - [x] Docker (_docker-build_ - _docker-push_ - _docker-remove-image_ - _docker-remove-container_ - _docker-prune_)
+  - [x] Docker-Compose (_compose-up_ - _compose-down_ - _compose-clean_)
 - [ ] Next Will be Microservice Architechture
 
 
