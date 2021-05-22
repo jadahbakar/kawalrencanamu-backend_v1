@@ -61,11 +61,14 @@ This system is using for [Kawal Rencanamu][company-website] frontend and mobile 
 
 This section we explain what is backend is develop with 
 * [Golang](https://golang.org)
+* [PostgreSQL](https://www.postgresql.org/)
 * [Fiber](https://docs.gofiber.io/)
 * [Viper](https://github.com/spf13/viper)
 * [Reflex](https://github.com/cespare/reflex)
 * [Air](https://github.com/cosmtrek/air)
-
+* [Traefik](https://traefik.io/)
+* [Prometheus](https://prometheus.io/)
+* [Grafana](https://grafana.com/)
 
 
 
@@ -235,12 +238,37 @@ kawalrencanamu-backend/
 └── version
     └── version.go
 ```
-
+<!-- [Reflex](https://github.com/cespare/reflex)
+* [Air](https://github.com/cosmtrek/air) -->
 
 <!-- FEATURES -->
 ## Features
 - [x] Create scaffolding for Monolith - Hexagonal Architechture
-- [ ] Create Database on PemKot Server
+- [x] Integrating [Viper](https://github.com/spf13/viper) with go for reading environment variable
+  * Define on appConfig with mapstructure 
+- [x] Config REST API with [Fiber](https://docs.gofiber.io/), this include:
+  * Middleware 
+    * Prefork=**true**
+    * Config Logger (/log/fiber.log)
+    * Config CORS
+    * Config Compress
+    * Config CSRF
+  * Server
+    * Shutdown Normaly
+    * GracefulShutdown
+- [x] Configuration for Build Golang Manualy **_go build_**
+- [x] mix recepies Golang with Docker
+- [x] Using [Traefik](https://traefik.io/) for __Reverse Proxy__
+- [x] ~~Create Watcher with **__reflex__** for Development with Hot Reloading~~
+- [x] Create Development with Docker and [Air](https://github.com/cosmtrek/air) for Development with Hot Reloading
+- [x] Configure [Traefik](https://traefik.io/) desktop
+- [x] Create Monitoring 
+  - [ ] Build and Configure [Prometheus](https://prometheus.io/)
+  - [ ] Build and Configure [Grafana](https://grafana.com/)
+  - [ ] Colaborate  [Traefik](https://traefik.io/) + [Prometheus](https://prometheus.io/) + [Grafana](https://grafana.com/)
+  - [ ] Node Health Check
+- [ ] Deploy on Local [kubernetes](https://kubernetes.io/id/) Container Orchestration
+- [x] Create Database on PemKot Server (Persistent Storage)
   - [ ] Schema hst (History)
   - [ ] Schema log (Logging)
   - [x] Schema mst (Master)
