@@ -42,6 +42,7 @@ https://github.com/Naereen/badges
       </ul>
     </li>
     <li><a href="#project-structure">Project structure</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -238,9 +239,33 @@ kawalrencanamu-backend/
 
 <!-- FEATURES -->
 ## Features
-- [x] Write the press release 
-- [ ] Write the press release
-- [ ] Write the press release
+- [x] Create scaffolding for Monolith - Hexagonal Architechture
+- [ ] Next Will be Microservice Architechture
+- [ ] Create Database on PemKot Server
+  * ci server badge
+  * published NPM package info
+  * production and dev dependencies being out of date
+  * semantic release badge
+- [ ] Create Database on PemKot Server
+  - [ ] Schema hst (History)
+  - [ ] Schema log (Logging)
+  - [x] Schema mst (Master)
+    * bod
+    * connector
+    * divisi
+    * misi
+    * misi_indikator
+    * parameter
+    * periode
+    * unit_indikator
+    * value
+    * value_indikator
+    * visi
+    * visi_indikator
+    * visi_phase
+  - [x] Schema sec (Security)
+  
+
 
 <!-- LICENSE -->
 ## License
@@ -269,7 +294,6 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 * [how-to-build-a-smaller-docker-image](https://medium.com/@gdiener/how-to-build-a-smaller-docker-image-76779e18d48a)
 * [go-docker-dev-environment-with-go-modules-and-live-code-reloading](https://threedots.tech/post/go-docker-dev-environment-with-go-modules-and-live-code-reloading/)t
 * [self-compiling-go-docker-container](https://www.getwrecked.com/self-compiling-go-docker-container/)
-
 * [monitoring-traefik-with-grafana <-- Next Implementation](https://medium.com/platform-engineering/monitoring-traefik-with-grafana-1d037af5b952)
 
 <!-- MARKDOWN LINKS & IMAGES -->
