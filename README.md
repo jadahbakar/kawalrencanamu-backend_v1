@@ -19,7 +19,7 @@ https://github.com/Naereen/badges
   <a href="https://github.com/jadahbakar/kawalrencanamu-backend">
     <img src="images/kawalrencanamu.png" alt="Logo" width="158" height="137">
   </a>
-  <h3 align="center">Kawal Rencanamu - Backend</h3> <br />
+  <h2 align="center">Kawal Rencanamu - Backend</h2> <br />
 </p>
 
 
@@ -62,6 +62,9 @@ This section we explain what is backend is develop with
 * [Golang](https://golang.org)
 * [Fiber](https://docs.gofiber.io/)
 * [Viper](https://github.com/spf13/viper)
+* [Reflex](https://github.com/cespare/reflex)
+* [Air](https://github.com/cosmtrek/air)
+
 
 
 
@@ -81,11 +84,57 @@ To get a local copy up and running follow these simple example steps.
   > go version
   go version go1.16.3 darwin/amd64
    ```
+* Check if your OS have [make](https://www.gnu.org/software/make/), to check it run this command (in my case is using OSX)
+  ```
+  ❯ make -v
+  GNU Make 3.81
+  Copyright (C) 2006  Free Software Foundation, Inc.
+  This is free software; see the source for copying conditions.
+  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+  PARTICULAR PURPOSE.
+
+  This program built for i386-apple-darwin11.3.0
+   ```
+* Docker is required trought our development process, so highly need it
+  ```
+  ❯ docker version
+  Client:
+  Cloud integration: 1.0.14
+  Version:           20.10.6
+  API version:       1.41
+  Go version:        go1.16.3
+  Git commit:        370c289
+  Built:             Fri Apr  9 22:46:57 2021
+  OS/Arch:           darwin/amd64
+  Context:           default
+  Experimental:      true
+
+  Server: Docker Engine - Community
+  Engine:
+    Version:          20.10.6
+    API version:      1.41 (minimum version 1.12)
+    Go version:       go1.13.15
+    Git commit:       8728dd2
+    Built:            Fri Apr  9 22:44:56 2021
+    OS/Arch:          linux/amd64
+    Experimental:     false
+  containerd:
+    Version:          1.4.4
+    GitCommit:        05f951a3781f4f2c1911b05e61c160e9c30eaa8e
+  runc:
+    Version:          1.0.0-rc93
+    GitCommit:        12644e614e25b05da6fd08a38ffa0cfe1903fdec
+  docker-init:
+    Version:          0.19.0
+    GitCommit:        de40ad0
+   ```
+  As you can se the **_Engine_** > **_Version_** > **_20.10.6_** (on my OSX)
 
 
 <!-- INSTALLATION -->
-#### Installation
+## Installation
 
+#### Manual Installation
 1. Clone the repo
    ```sh
    git clone https://github.com/jadahbakar/kawalrencanamu-backend.git
@@ -94,6 +143,44 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    go mod update
    ```
+3. Before to next step, firstable you must manual install [reflex](https://github.com/cespare/reflex)
+   ```sh
+   go get github.com/cespare/reflex
+   ```
+4. Check reflex installation
+   ```sh
+   relex --help
+   ```
+5. This is Optional if point 4 shows error, you must manualy add to **_SYSTEM PATH_** \n
+   in my case i'm using _**zsh**_, so add it to _**.zshrc**_  
+   ```sh
+   export PATH="$PATH:$(go env GOPATH)/bin"
+   ```
+   After that refresh the console with
+   ```sh
+   ❯ . ~/.zshrc
+   ```
+   Or 
+   ```sh
+   ❯ source ~/.zshrc
+   ```
+3. Run it
+   ```sh
+   make watch
+   ```
+#### Docker
+1. Clone the repo
+   ```sh
+   git clone https://github.com/jadahbakar/kawalrencanamu-backend.git
+   ```
+2. Run it (it will create docker images and container with autoreload)
+   ```sh
+   make devel-up
+   ```
+3. Stop 
+   ```sh
+   make devel-down
+   ```
 
 
 <!-- Project structure -->
@@ -101,28 +188,31 @@ To get a local copy up and running follow these simple example steps.
 
 ```
 kawalrencanamu-backend/
-├── Dockerfile
 ├── LICENSE.txt
 ├── Makefile
 ├── README.md
 ├── app.env
 ├── cmd
 │   └── main.go
-├── docker-compose.yml
+├── docker
+│   ├── development
+│   │   ├── dev.Dockerfile
+│   │   └── docker-compose.yml
+│   └── production
+│       ├── Dockerfile
+│       ├── exampledocker-compose.yml
+│       ├── fixDockerfile\ copy
+│       └── v1docker-compose.yml
 ├── go.mod
 ├── go.sum
 ├── images
 │   ├── golang.svg
 │   └── kawalrencanamu.png
 ├── internal
-│   ├── core
-│   │   └── me
-│   │       └── domain
 │   └── me
 │       └── service.go
 ├── log
 │   └── fiber.log
-├── log.md
 ├── pkg
 │   ├── config
 │   │   ├── appConfig.go
@@ -138,11 +228,19 @@ kawalrencanamu-backend/
 │       ├── jwt_generator.go
 │       ├── jwt_parser.go
 │       └── startServer.go
+├── tmp
+│   └── app
+│       └── engine
 └── version
     └── version.go
 ```
 
 
+<!-- FEATURES -->
+## Features
+- [x] 
+- []
+ - []
 
 <!-- LICENSE -->
 ## License
@@ -152,11 +250,9 @@ Distributed under the Proprietary License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
-Dedy Styawan - [dedy.styawan](https://twitter.com/dedystyawan) - dedy.styawan@gmail.com
-
-Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmail.com
-
+Kawalrencanamu - [kawalrencanamu](http://kawalrencanamu.com) - admin@kawalrencanamu.com
+<!-- Dedy Styawan - [dedy.styawan](https://twitter.com/dedystyawan) - dedy.styawan@gmail.com
+Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmail.com -->
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
@@ -174,6 +270,7 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 * [go-docker-dev-environment-with-go-modules-and-live-code-reloading](https://threedots.tech/post/go-docker-dev-environment-with-go-modules-and-live-code-reloading/)t
 * [self-compiling-go-docker-container](https://www.getwrecked.com/self-compiling-go-docker-container/)
 
+* [monitoring-traefik-with-grafana <-- Next Implementation](https://medium.com/platform-engineering/monitoring-traefik-with-grafana-1d037af5b952)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
