@@ -244,7 +244,7 @@ kawalrencanamu-backend/
   - [ ] Schema hst (History)
   - [ ] Schema log (Logging)
   - [x] Schema mst (Master)
-Markup : * Table
+      * Table
           * bod
           * connector
           * divisi
@@ -259,14 +259,14 @@ Markup : * Table
           * visi_indikator
           * visi_phase
   - [x] Schema sec (Security)
-    * Table
-      * group_user
-      * login_method
-      * menu_child
-      * menu_master
-      * role_menu
-      * role_otoritas
-      * user
+      * Table
+          * group_user
+          * login_method
+          * menu_child
+          * menu_master
+          * role_menu
+          * role_otoritas
+          * user
 - [ ] Create 
 - [ ] Next Will be Microservice Architechture
 
