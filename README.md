@@ -238,9 +238,9 @@ kawalrencanamu-backend/
 
 <!-- FEATURES -->
 ## Features
-- [x] 
-- []
- - []
+- [x] Write the press release 
+- [ ] Write the press release
+- [ ] Write the press release
 
 <!-- LICENSE -->
 ## License
