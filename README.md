@@ -290,7 +290,12 @@ kawalrencanamu-backend/
   - [x] Docker (_**docker-build**_ - _**docker-push**_ - _**docker-remove-image**_ - _**docker-remove-container**_ - _**docker-prune**_)
   - [x] Docker-Compose (_**compose-up**_ - _**compose-down**_ - _**compose-clean**_)
 - [ ] Next Will be Microservice Architechture
-
+- [ ] Next Will be Microservice Architechture
+- [ ] Next Will be Microservice Architechture
+- [ ] Next Will be Microservice Architechture
+- [ ] Next Will be Microservice Architechture
+- [ ] Next Will be Microservice Architechture
+- [ ] Next Will be Microservice Architechture
 
 <!-- LICENSE -->
 ## License
