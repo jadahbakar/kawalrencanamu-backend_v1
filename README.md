@@ -240,33 +240,35 @@ kawalrencanamu-backend/
 <!-- FEATURES -->
 ## Features
 - [x] Create scaffolding for Monolith - Hexagonal Architechture
-- [ ] Next Will be Microservice Architechture
 - [ ] Create Database on PemKot Server
   - [ ] Schema hst (History)
   - [ ] Schema log (Logging)
   - [x] Schema mst (Master)
-    * bod
-    * connector
-    * divisi
-    * misi
-    * misi_indikator
-    * parameter
-    * periode
-    * unit_indikator
-    * value
-    * value_indikator
-    * visi
-    * visi_indikator
-    * visi_phase
+    * Table
+      * bod
+      * connector
+      * divisi
+      * misi
+      * misi_indikator
+      * parameter
+      * periode
+      * unit_indikator
+      * value
+      * value_indikator
+      * visi
+      * visi_indikator
+      * visi_phase
   - [x] Schema sec (Security)
-    * group_user
-    * login_method
-    * menu_child
-    * menu_master
-    * role_menu
-    * role_otoritas
-    * user
-  
+    * Table
+      * group_user
+      * login_method
+      * menu_child
+      * menu_master
+      * role_menu
+      * role_otoritas
+      * user
+- [ ] Create 
+- [ ] Next Will be Microservice Architechture
 
 
 <!-- LICENSE -->
