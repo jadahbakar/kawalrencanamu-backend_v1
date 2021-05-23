@@ -322,12 +322,10 @@ kawalrencanamu-backend/
   - [x] Docker (_**docker-build**_ - _**docker-push**_ - _**docker-remove-image**_ - _**docker-remove-container**_ - _**docker-prune**_)
   - [x] Docker-Compose (_**compose-up**_ - _**compose-down**_ - _**compose-clean**_)
 - [ ] Deploy and Configure Redis for caching
-- [ ] Create Security Service
-  - [ ] Create Security Service
 - [ ] Create Authentication Service
-- [ ] Create  Service
-- [ ] Create x Service
-- [ ] Create x Service
+  - [ ] Create Security Service
+- [ ] Create Authorization Service
+  - [ ] Create Access Control List for User
 - [ ] Next Will be Microservice Architechture
 - [ ] Next Will Using [NATS](https://nats.io/) for Message Broker (Microservice Architechture)
 - [ ] Next Will use Centralizen Configuration (Microservice Architechture)
