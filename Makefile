@@ -65,6 +65,8 @@ devel-stop:
 
 
 devel-down: devel-stop docker-remove-container docker-remove-image docker-prune
+	@echo "-> Clear fiber.log";
+	@cat /dev/null > ./log/fiber.log
 
 #  ____ ____ ____ ____ 
 # (_  _|  __) ___|_  _)
