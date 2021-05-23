@@ -69,8 +69,11 @@ This section we explain what is backend is develop with
 * [Traefik](https://traefik.io/)
 * [Prometheus](https://prometheus.io/)
 * [Grafana](https://grafana.com/)
-
-
+* [Fluentd](https://www.fluentd.org/)
+* [Elasticsearch](https://www.elastic.co/)
+* [Redis](https://redis.io/)
+* [NATS](https://nats.io/)
+* [cosul](https://www.consul.io/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -245,7 +248,7 @@ kawalrencanamu-backend/
 ## Features
 - [x] Create scaffolding for Monolith - Hexagonal Architechture
 - [x] Integrating [Viper](https://github.com/spf13/viper) with go for reading environment variable
-  * Define on appConfig with mapstructure 
+  * Define on `appConfig` with `mapstructure` 
 - [x] Config REST API with [Fiber](https://docs.gofiber.io/), this include:
   * Middleware 
     * Prefork=**true**
@@ -255,19 +258,20 @@ kawalrencanamu-backend/
     * Config CSRF
   * Server
     * Shutdown Normaly
-    * GracefulShutdown
+    * Graceful Shutdown
 - [x] Configuration for Build Golang Manualy **_go build_**
 - [x] mix recepies Golang with Docker
 - [x] Using [Traefik](https://traefik.io/) for __Reverse Proxy__
 - [x] ~~Create Watcher with **__reflex__** for Development with Hot Reloading~~
 - [x] Create Development with Docker and [Air](https://github.com/cosmtrek/air) for Development with Hot Reloading
 - [x] Configure [Traefik](https://traefik.io/) desktop
-- [x] Create Monitoring 
+- [ ] Create Monitoring 
   - [ ] Build and Configure [Prometheus](https://prometheus.io/)
   - [ ] Build and Configure [Grafana](https://grafana.com/)
   - [ ] Colaborate  [Traefik](https://traefik.io/) + [Prometheus](https://prometheus.io/) + [Grafana](https://grafana.com/)
   - [ ] Node Health Check
 - [ ] Deploy on Local [kubernetes](https://kubernetes.io/id/) Container Orchestration
+- [ ] Centralization logger multistaging (Application, Database) with [Fluentd](https://www.fluentd.org/) + [Elasticsearch](https://www.elastic.co/)
 - [x] Create Database on PemKot Server (Persistent Storage)
   - [ ] Schema hst (History)
   - [ ] Schema log (Logging)
@@ -317,13 +321,18 @@ kawalrencanamu-backend/
   - [x] Build for Docker (_**go-buil**_)
   - [x] Docker (_**docker-build**_ - _**docker-push**_ - _**docker-remove-image**_ - _**docker-remove-container**_ - _**docker-prune**_)
   - [x] Docker-Compose (_**compose-up**_ - _**compose-down**_ - _**compose-clean**_)
+- [ ] Deploy and Configure Redis for caching
+- [ ] Create Security Service
+  - [ ] Create Security Service
+- [ ] Create Authentication Service
+- [ ] Create  Service
+- [ ] Create x Service
+- [ ] Create x Service
 - [ ] Next Will be Microservice Architechture
-- [ ] Next Will be Microservice Architechture
-- [ ] Next Will be Microservice Architechture
-- [ ] Next Will be Microservice Architechture
-- [ ] Next Will be Microservice Architechture
-- [ ] Next Will be Microservice Architechture
-- [ ] Next Will be Microservice Architechture
+- [ ] Next Will Using [NATS](https://nats.io/) for Message Broker (Microservice Architechture)
+- [ ] Next Will use Centralizen Configuration (Microservice Architechture)
+- [ ] Next Will use Service Registery with Health Check (Microservice Architechture)
+
 
 <!-- LICENSE -->
 ## License
@@ -340,7 +349,7 @@ Setiadi Akbar - [setiadi](https://twitter.com/setiadiakbar) - setiadiakbar0@gmai
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * [Build Docker Image](https://github.com/target/flottbot/blob/master/docker/Dockerfile)
-* [Building APIs with Go — Part 2 --> the newest ](https://fernando-bandeira.medium.com/building-apis-with-go-part-2-4afc50fd0ff8)
+* [Building APIs with Go — Part 2 -> the newest ](https://fernando-bandeira.medium.com/building-apis-with-go-part-2-4afc50fd0ff8)
 * [hexagonal-architecture-in-go -> using it now](https://medium.com/@matiasvarela/hexagonal-architecture-in-go-cfd4e436faa3)
 * [stygis-golang-hexagonal-architecture](https://idevoid.medium.com/stygis-golang-hexagonal-architecture-a2d89d01f84b)
 * [how-i-structure-services-in-go](https://medium.com/@ott.kristian/how-i-structure-services-in-go-19147ad0e6bd)
