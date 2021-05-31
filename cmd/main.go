@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"flag"
 	"fmt"
 	"log"
@@ -14,6 +13,7 @@ import (
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/routes"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/utils"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/version"
+	"github.com/uber/jaeger-client-go/log/zap"
 )
 
 func main() {
@@ -31,13 +31,20 @@ func main() {
 	if err != nil {
 		log.Fatal("cannot load config:", err)
 	}
+
 	// Database Connection
-	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	pgConfig, err := pgx.ParseConfig(confApp.DBURL)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
 	}
-	defer conn.Close(context.Background())
+	pgConfig.Logger = zap.NewLogger(log.New("module", "pgx"))
+	// conn, err := pgx.Connect(context.Background(), confApp.DBURL)
+	// if err != nil {
+	// 	fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+	// 	os.Exit(1)
+	// }
+	// defer conn.Close(context.Background())
 
 	// Define Log file
 	fileLogger := config.LoggerConfig(confApp)
@@ -57,15 +64,4 @@ func main() {
 	utils.AppName()
 	utils.StartServerWithGracefulShutdown(app, confApp, fileLogger)
 	// utils.StartServer(app, confApp)
-}
-
-func chooseRepo() {
-	redisURL := os.Getenv("REDIS_URL")
-	repo, err := rr.NewRedisRepository(redisURL)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return repo
-
-	// return nil
 }
