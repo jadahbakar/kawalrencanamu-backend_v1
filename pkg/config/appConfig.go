@@ -13,6 +13,7 @@ type Config struct {
 	ServerReadTimeOut int    `mapstructure:"SERVER_READ_TIMEOUT"`
 	Prefork           bool   `mapstructure:"PREFORK"`
 	CaseSensitive     bool   `mapstructure:"CASE_SENSITIVE"`
+	DBURL             string `mapstructure:"DATABASE_URL"`
 }
 
 // LoadConfig reads configuration from file or environment variables.
