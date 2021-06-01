@@ -6,6 +6,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/gofiber/fiber v1.14.6
 	github.com/gofiber/fiber/v2 v2.9.0
 	github.com/gofiber/jwt/v2 v2.2.1
 	github.com/klauspost/compress v1.12.2 // indirect
@@ -14,4 +15,6 @@ require (
 	github.com/valyala/fasthttp v1.24.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
 	golang.org/x/sys v0.0.0-20210507014357-30e306a8bba5 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

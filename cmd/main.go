@@ -14,7 +14,7 @@ import (
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/version"
 )
 
-func main() {
+func init() {
 	ver := flag.Bool("version", false, "print version information")
 	v := flag.Bool("v", false, "print version information")
 
@@ -23,7 +23,9 @@ func main() {
 		fmt.Println(version.String())
 		os.Exit(0)
 	}
+}
 
+func main() {
 	// Load env.
 	confApp, err := config.LoadConfig()
 	if err != nil {
@@ -58,12 +60,7 @@ func main() {
 	// routes.PrivateRoutes(app)         // Register a private routes for app.
 	// routes.NotFoundRoute(app)         // Register route for 404 Error.
 
-	//--- Routes
-	// httpRouter:= routes.
-
 	// Start server (with graceful shutdown).
 	utils.AppName()
 	utils.StartServerWithGracefulShutdown(app, confApp, fileLogger)
-	// utils.StartServer(app, confApp)
-
 }

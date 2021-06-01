@@ -14,4 +14,5 @@ func PublicRoutes(a *fiber.App, conf config.Config) {
 	router := a.Group(fmt.Sprintf("%s%s", conf.ApiURLGroup, conf.ApiURLVersion))
 	me.AddRoutes(router)
 
+	master.AddRoutes(router)
 }

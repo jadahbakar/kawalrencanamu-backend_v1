@@ -13,18 +13,23 @@ import (
 	"github.com/gofiber/fiber/v2/utils"
 )
 
+// https://github.com/gofiber/fiber/issues/1293
+// https://github.com/gofiber/fiber/issues/683
+
 // FiberMiddleware provide Fiber's built-in middlewares.
 // See: https://docs.gofiber.io/api/middleware
 func FiberMiddleware(a *fiber.App, logFile *os.File) {
-
+	//----- Logger
 	ConfigLogger := logger.Config{
-		Next:       nil,
-		Format:     "[${time}] ${pid} | ${locals:requestid} |${ip} | ${status} - ${latency} | ${method} | ${path}\n",
+		Next:   nil,
+		Format: `{"pid":${pid}, "timestamp":"${time}", "status":${status}, "latency":"${latency}", "method":"${method}", "path":"${path}"}\n`,
+		// Format:     "[${time}] ${pid} | ${locals:requestid} |${ip} | ${status} - ${latency} | ${method} | ${path}\n",
 		TimeFormat: "2006/Jan/02 15:04:05",
 		TimeZone:   "Asia/Jakarta",
 		Output:     logFile,
 	}
 
+	//----- CORS
 	ConfigCORS := cors.Config{
 		Next:             nil,
 		AllowOrigins:     "*",
@@ -34,12 +39,12 @@ func FiberMiddleware(a *fiber.App, logFile *os.File) {
 		ExposeHeaders:    "",
 		MaxAge:           0,
 	}
-
+	//----- Compress
 	ConfigCompress := compress.Config{
 		Next:  nil,
 		Level: compress.LevelBestSpeed,
 	}
-
+	//----- CSRF
 	ConfigCSRF := csrf.Config{
 		KeyLookup:      "header:X-Csrf-Token",
 		CookieName:     "csrf_",
