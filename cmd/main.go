@@ -7,13 +7,11 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2" // new
-	"github.com/jackc/pgx/v4"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/config"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/middleware"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/routes"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/utils"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/version"
-	"github.com/uber/jaeger-client-go/log/zap"
 )
 
 func main() {
@@ -33,12 +31,12 @@ func main() {
 	}
 
 	// Database Connection
-	pgConfig, err := pgx.ParseConfig(confApp.DBURL)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-		os.Exit(1)
-	}
-	pgConfig.Logger = zap.NewLogger(log.New("module", "pgx"))
+	// pgConfig, err := pgx.ParseConfig(confApp.DBURL)
+	// if err != nil {
+	// 	fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+	// 	os.Exit(1)
+	// }
+	// pgConfig.Logger = zap.NewLogger(log.New("module", "pgx"))
 	// conn, err := pgx.Connect(context.Background(), confApp.DBURL)
 	// if err != nil {
 	// 	fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
@@ -60,8 +58,12 @@ func main() {
 	// routes.PrivateRoutes(app)         // Register a private routes for app.
 	// routes.NotFoundRoute(app)         // Register route for 404 Error.
 
+	//--- Routes
+	// httpRouter:= routes.
+
 	// Start server (with graceful shutdown).
 	utils.AppName()
 	utils.StartServerWithGracefulShutdown(app, confApp, fileLogger)
 	// utils.StartServer(app, confApp)
+
 }

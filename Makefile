@@ -82,7 +82,7 @@ lint:
 	@echo "-> Running $@"
 	@go fmt ./...
 
-start: lint
+start: tidy
 	# @clear
 	@echo "-> Running $@"
 	@go run cmd/main.go
