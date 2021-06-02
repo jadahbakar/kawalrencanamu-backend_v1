@@ -1,18 +1,22 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 
 	"github.com/gofiber/fiber/v2" // new
+	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/config"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/middleware"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/routes"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/utils"
 	"github.com/jadahbakar/kawalrencanamu-backend/pkg/version"
 )
+
+// https://gist.github.com/rnyrnyrny/282fe705d6e8dc012e482582d7c8ec0b
 
 func init() {
 	ver := flag.Bool("version", false, "print version information")
@@ -33,21 +37,19 @@ func main() {
 	}
 
 	// Database Connection
-	// pgConfig, err := pgx.ParseConfig(confApp.DBURL)
-	// if err != nil {
-	// 	fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-	// 	os.Exit(1)
-	// }
-	// pgConfig.Logger = zap.NewLogger(log.New("module", "pgx"))
-	// conn, err := pgx.Connect(context.Background(), confApp.DBURL)
-	// if err != nil {
-	// 	fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-	// 	os.Exit(1)
-	// }
-	// defer conn.Close(context.Background())
+	pgxConfig, err := pgxpool.ParseConfig(os.Getenv("DATABASE_URL"))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to Parse DATABASE_URL: %v\n", err)
+		os.Exit(1)
+	}
+	pgxPool, err := pgxpool.ConnectConfig(context.Background(), pgxConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer pgxPool.Close()
 
 	// Define Log file
-	fileLogger := config.LoggerConfig(confApp)
+	fileLogger := config.AppLoggerConfig(confApp)
 	// Define Fiber's config.
 	confFiber := config.FiberConfig(confApp)
 	app := fiber.New(confFiber)
@@ -56,7 +58,7 @@ func main() {
 
 	// Routes
 	// routes.SwaggerRoute(app)          // Register a route for API Docs (Swagger).
-	routes.PublicRoutes(app, confApp) // Register a public routes for app.
+	routes.PublicRoutes(app, confApp, pgxPool) // Register a public routes for app.
 	// routes.PrivateRoutes(app)         // Register a private routes for app.
 	// routes.NotFoundRoute(app)         // Register route for 404 Error.
 
