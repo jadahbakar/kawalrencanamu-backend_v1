@@ -1,18 +1,25 @@
 package repository
 
 import (
-	"github.com/jackc/pgx/v4/pgxpool"
+	"errors"
+
+	"github.com/jackc/pgx/v4"
 	"github.com/jadahbakar/kawalrencanamu-backend/internal/master/entities"
 )
 
+var (
+	ErrRepository = errors.New("Unable to Handle Request")
+	ErrNotFound   = errors.New("Assesment Environment Not Found")
+)
+
 type MasterRepository struct {
-	client *pgxpool.Pool
+	db *pgx.Conn
 }
 
-func NewMasterRepository(client *pgxpool.Pool) entities.AssesmentEnvironmentRepository {
-	return &MasterRepository{client}
+func NewMasterRepository(db *pgx.Conn) entities.AssesmentEnvironmentRepository {
+	return &MasterRepository{db: db}
 }
 
-func (r *MasterRepository) Fetch() (result []entities.AssesmentEnvironment, err error) {
-
+func (r MasterRepository) GetAssEnvById() (*entities.AssesmentEnvironment, error) {
+	return &entities.AssesmentEnvironment{}, nil
 }
