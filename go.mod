@@ -6,7 +6,6 @@ require (
 	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/andybalholm/brotli v1.0.2 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/gofiber/fiber v1.14.6
 	github.com/gofiber/fiber/v2 v2.9.0
 	github.com/gofiber/jwt/v2 v2.2.1
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
