@@ -12,10 +12,10 @@ type bodRepository struct {
 }
 
 func NewBodRepository(Conn *sql.DB) BodRepository {
-	return &bodRepository{Conn}
+	return &bodRepository{Conn: Conn}
 }
 
-func (br *bodRepository) SearchAll() ([]*Bod, error) {
+func (br *bodRepository) SearchAll() ([]Bod, error) {
 	query := `SELECT bod_id, bod_call_sign, bod_nama_id, bod_nama_en
 				FROM mst.bod ORDER BY bod_id`
 	rows, err := br.Conn.Query(query)
@@ -24,7 +24,7 @@ func (br *bodRepository) SearchAll() ([]*Bod, error) {
 		return nil, err
 	}
 
-	result := make([]*Bod, 0)
+	result := make([]Bod, 0)
 	t := Bod{}
 	for rows.Next() {
 		err = rows.Scan(
@@ -38,7 +38,7 @@ func (br *bodRepository) SearchAll() ([]*Bod, error) {
 			return nil, err
 		}
 
-		result = append(result, &t)
+		result = append(result, t)
 	}
 	if rows.Err() != nil {
 		// if any error occurred while reading rows.
@@ -49,8 +49,8 @@ func (br *bodRepository) SearchAll() ([]*Bod, error) {
 	return result, nil
 }
 
-func (br *bodRepository) SearchById(Id string) (*Bod, error) {
-	var t *Bod
+func (br *bodRepository) SearchById(Id int) (Bod, error) {
+	var t Bod
 	query := `SELECT bod_id, bod_call_sign, bod_nama_id, bod_nama_en
 				FROM mst.bod WHERE BY bod_id=?`
 	err := br.Conn.QueryRow(query, Id).Scan(
