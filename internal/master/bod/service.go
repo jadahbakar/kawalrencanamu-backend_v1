@@ -20,7 +20,11 @@ func (bs *bodService) FindAll() ([]Bod, error) {
 	return res, nil
 }
 
-func (bs *bodService) FindById(id string) (Bod, error) {
-	item := Bod{}
-	return item, nil
+func (bs *bodService) FindById(Id int) (res Bod, err error) {
+	res, err = bs.bodRepo.SearchById(Id)
+	if err != nil {
+		zap.Error(err)
+		return
+	}
+	return
 }

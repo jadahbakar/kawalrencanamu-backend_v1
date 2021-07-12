@@ -7,5 +7,5 @@ type BodRepository interface {
 
 type BodService interface {
 	FindAll() ([]Bod, error)
-	FindById(id string) (Bod, error)
+	FindById(Id int) (Bod, error)
 }
