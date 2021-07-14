@@ -7,7 +7,6 @@ import (
 	"github.com/jadahbakar/kawalrencanamu-backend/internal/master/bod"
 	"github.com/jadahbakar/kawalrencanamu-backend/mocks"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 )
 
 func setup() (mockBodRepo *mocks.BodRepository, srv bod.BodService) {
@@ -91,17 +90,30 @@ func TestFindById(t *testing.T) {
 		// 	BodNamaId:   "Nama",
 		// 	BodNamaEn:   "Name",
 		// }
-		mockBodRepo.On("SearchById", mock.Anything, mock.AnythingOfType("string")).Return(bod.Bod{}, errors.New("Unexpected")).Once()
-
-		srv := bod.NewBodService(mockBodRepo)
+		// mockBodRepo.On("SearchById", mock.Anything, mock.AnythingOfType("string")).Return(bod.Bod{}, errors.New("Unexpected")).Once()
 		paramId := 1
+		mockBodRepo.On("SearchById", paramId).Return(bod.Bod{}, errors.New("error"))
+		srv := bod.NewBodService(mockBodRepo)
 
 		a, err := srv.FindById(paramId)
 
 		assert.Error(t, err)
+		// Assertions
+		assert.Equal(t, "error", err.Error())
+
 		assert.Equal(t, bod.Bod{}, a)
 
 		mockBodRepo.AssertExpectations(t)
 		mockBodRepo.AssertExpectations(t)
+
+		// mocks
+		// ret.TodoUsecase.On("GetTodoByID", ctx, "xxx-xxx-xxx").Return(nil, errors.New("error"))
+
+		// // testing
+		// h := hen.GetTodoById(c)
+
+		// // Assertions
+		// assert.Equal(t, "code=500, message=Internal Server Error", h.Error())
+
 	})
 }
